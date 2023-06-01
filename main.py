@@ -11,8 +11,8 @@ sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
 def print_sudoku():
     return 0
 
-def insert_number():
-    return 0
+def insert_number(column:int, row:int, value:int):
+    sudoku_matrix[row-1][column-1] = value
 
 def get_suggestion():
     return 0
@@ -26,7 +26,13 @@ while True:
         case 1:
             print_sudoku()
         case 2:
-            insert_number()
+            try:
+                column = int(input("Inserisci la colonna: "))
+                row = int(input("Inserisci la riga: "))
+                value = int(input("Inserisci il valore: "))
+            except ValueError:
+                raise ValueError("Valore non numerico")
+            insert_number(column, row, value)
         case 3:
             get_suggestion()
         case 4:
