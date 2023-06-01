@@ -9,7 +9,12 @@ sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
                  [0,0,0,0,8,0,0,7,9]]
 
 def print_sudoku():
-    return 0
+    print("\n")
+    for x in range(9):
+        for y in range(9):
+            print(sudoku_matrix[x][y], end=" ")
+        print()
+    print("\n")
 
 def insert_number():
     return 0
