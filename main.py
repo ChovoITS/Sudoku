@@ -24,7 +24,7 @@ solution_matrix = [[5,3,4,6,7,8,9,1,2],
                     [2,8,7,4,1,9,6,3,5],
                     [2,4,5,2,8,6,1,7,9]]
 
-def print_sudoku(last_row:int=-1, last_column:int=-1, error:bool=False):
+def print_sudoku(last_row:int=-1, last_column:int=-1, error:bool=False,value:int =-1):
     print("\n")
     for x in range(9):
         if x == 0:
@@ -32,7 +32,7 @@ def print_sudoku(last_row:int=-1, last_column:int=-1, error:bool=False):
         for y in range(9):
             if y == 0:
                 print("|", end=" ")
-            if sudoku_matrix[x][y] != 0 and error == False:
+            if sudoku_matrix[x][y] != 0:
                 if last_row != -1 and last_column != -1:
                     if x == last_row and y == last_column:
                         print(Fore.YELLOW + str(sudoku_matrix[x][y]),end=" ")
@@ -45,8 +45,11 @@ def print_sudoku(last_row:int=-1, last_column:int=-1, error:bool=False):
                     print(Style.RESET_ALL,end="")
             else:
                 if last_row != -1 and last_column != -1 and error:
-                    print(Fore.RED + str(sudoku_matrix[x][y]), end=" ")
-                    print(Style.RESET_ALL,end="")
+                    if x == last_row and y == last_column:
+                        print(Fore.RED + str(value), end=" ")
+                        print(Style.RESET_ALL,end="")
+                    else:
+                        print(sudoku_matrix[x][y], end=" ")
                 else:
                     print(sudoku_matrix[x][y], end=" ")
             if y == 2 or y == 5 or y == 8:
@@ -64,7 +67,7 @@ def insert_number(column:int, row:int, value:int):
     if solution_matrix[row-1][column-1] != value:
         print(Fore.RED + "Il valore inserito non corretto, Riprova")
         print(Style.RESET_ALL, end="")
-        print(print_sudoku(row-1, column-1, True))
+        print(print_sudoku(row-1, column-1, True,value=value))
     else:
         sudoku_matrix[row-1][column-1] = value
         print_sudoku(row-1, column-1)
