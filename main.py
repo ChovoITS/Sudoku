@@ -1,3 +1,5 @@
+from colorama import Fore, Style
+
 sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
                  [6,0,0,1,9,5,0,0,0],
                  [0,9,8,0,0,0,0,6,0],
@@ -11,8 +13,13 @@ sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
 def print_sudoku():
     return 0
 
-def insert_number():
-    return 0
+def insert_number(column:int, row:int, value:int):
+    if column > 9 or column < 1 or row > 9 or row < 1:
+        raise ValueError("Valore non valido")
+    if sudoku_matrix[row-1][column-1] != 0:
+        raise ValueError("Valore già inserito")
+    sudoku_matrix[row-1][column-1] = value
+    print_sudoku()
 
 def get_suggestion():
     solution_matrix = [[5,3,4,6,7,8,9,1,2],
@@ -42,7 +49,22 @@ while True:
         case 1:
             print_sudoku()
         case 2:
-            insert_number()
+            while True:
+                try:
+                    column = int(input("Inserisci la colonna: "))
+                    row = int(input("Inserisci la riga: "))
+                    value = int(input("Inserisci il valore: "))
+                except ValueError:
+                    raise ValueError("Valore non numerico")
+                if column > 9 or column < 1 or row > 9 or row < 1:
+                    print(Fore.RED + "Valore delle colonne o delle righe non valido")
+                    print(Style.RESET_ALL)
+                elif sudoku_matrix[row-1][column-1] != 0:
+                    print(Fore.RED + "Valore già inserito")
+                    print(Style.RESET_ALL)
+                else:
+                    break
+            insert_number(column, row, value)
         case 3:
             get_suggestion()
         case 4:
