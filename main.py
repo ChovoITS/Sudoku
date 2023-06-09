@@ -24,7 +24,7 @@ solution_matrix = [[5,3,4,6,7,8,9,1,2],
                     [2,8,7,4,1,9,6,3,5],
                     [2,4,5,2,8,6,1,7,9]]
 
-def print_sudoku():
+def print_sudoku(last_row:int=-1, last_column:int=-1, error:bool=False):
     print("\n")
     for x in range(9):
         if x == 0:
@@ -45,7 +45,7 @@ def print_sudoku():
                     print(Style.RESET_ALL,end="")
             else:
                 if last_row != -1 and last_column != -1 and error:
-                    print(Fore.RED + sudoku_matrix[x][y], end=" ")
+                    print(Fore.RED + str(sudoku_matrix[x][y]), end=" ")
                     print(Style.RESET_ALL,end="")
                 else:
                     print(sudoku_matrix[x][y], end=" ")
@@ -70,16 +70,7 @@ def insert_number(column:int, row:int, value:int):
         print_sudoku(row-1, column-1)
 
 def get_suggestion():
-       
-    solution_matrix = [[5,3,4,6,7,8,9,1,2],
-                      [6,7,2,1,9,5,3,4,8],
-                      [1,9,8,3,4,2,5,6,7],
-                      [8,5,8,7,6,1,4,2,3],
-                      [4,2,6,8,5,3,7,9,1],
-                      [7,1,3,9,2,4,8,5,6],
-                      [9,6,1,5,3,7,2,8,4],
-                      [2,8,7,4,1,9,6,3,5],
-                      [2,4,5,2,8,6,1,7,9]]
+
     if(suggestion_n==0):
         print(f"Hai finito i suggerimenti disponibili, se te ne serve un altro dovrai aspettare {waiting_time} secondi. ")
         k = input("vuoi ancora il suggerimento o no? Y/N: ")
@@ -148,4 +139,3 @@ while True:
             print(Fore.RED + "Valore non valido")
             print(Style.RESET_ALL, end="")
             print("Riprova \n")
-            continue
