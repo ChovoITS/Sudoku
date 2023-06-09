@@ -12,7 +12,12 @@ def print_sudoku():
     return 0
 
 def insert_number(column:int, row:int, value:int):
+    if column > 9 or column < 1 or row > 9 or row < 1:
+        raise ValueError("Valore non valido")
+    if sudoku_matrix[row-1][column-1] != 0:
+        raise ValueError("Valore già inserito")
     sudoku_matrix[row-1][column-1] = value
+    print_sudoku()
 
 def get_suggestion():
     return 0
@@ -26,12 +31,19 @@ while True:
         case 1:
             print_sudoku()
         case 2:
-            try:
-                column = int(input("Inserisci la colonna: "))
-                row = int(input("Inserisci la riga: "))
-                value = int(input("Inserisci il valore: "))
-            except ValueError:
-                raise ValueError("Valore non numerico")
+            while True:
+                try:
+                    column = int(input("Inserisci la colonna: "))
+                    row = int(input("Inserisci la riga: "))
+                    value = int(input("Inserisci il valore: "))
+                except ValueError:
+                    raise ValueError("Valore non numerico")
+                if column > 9 or column < 1 or row > 9 or row < 1:
+                    print("Valore delle colonne o delle righe non valido")
+                elif sudoku_matrix[row-1][column-1] != 0:
+                    print("Valore già inserito")
+                else:
+                    break
             insert_number(column, row, value)
         case 3:
             get_suggestion()
