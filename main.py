@@ -10,20 +10,36 @@ sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
                  [0,0,0,4,1,9,0,0,5],
                  [0,0,0,0,8,0,0,7,9]]
 
-def print_sudoku():
+def print_sudoku(last_row:int = -1,last_column:int= -1,error: bool = False):
     print("\n")
     for x in range(9):
+        if x == 0:
+            print("  ---------------------",end="\n")
         for y in range(9):
-            if sudoku_matrix[x][y] != 0:
-                print(Fore.GREEN + str(sudoku_matrix[x][y]),end=" ")
-                print(Style.RESET_ALL,end="")
+            if y == 0:
+                print("|", end=" ")
+            if sudoku_matrix[x][y] != 0 and error == False:
+                if last_row != -1 and last_column != -1:
+                    if x == last_row and y == last_column:
+                        print(Fore.YELLOW + str(sudoku_matrix[x][y]),end=" ")
+                        print(Style.RESET_ALL,end="")
+                    else:
+                        print(Fore.GREEN + str(sudoku_matrix[x][y]),end=" ")
+                        print(Style.RESET_ALL,end="")
+                else:
+                    print(Fore.GREEN + str(sudoku_matrix[x][y]),end=" ")
+                    print(Style.RESET_ALL,end="")
             else:
-                print(sudoku_matrix[x][y], end=" ")
-            if y == 2 or y == 5:
+                if last_row != -1 and last_column != -1 and error:
+                    print(Fore.RED + sudoku_matrix[x][y], end=" ")
+                    print(Style.RESET_ALL,end="")
+                else:
+                    print(sudoku_matrix[x][y], end=" ")
+            if y == 2 or y == 5 or y == 8:
                 print("|", end=" ")
         print()
-        if x == 2 or x == 5:
-            print("---------------------",end="\n")
+        if x == 2 or x == 5 or x == 8:
+            print("  ---------------------",end="\n")
     print("\n")
 
 def insert_number(column:int, row:int, value:int):
