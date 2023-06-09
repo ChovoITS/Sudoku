@@ -47,11 +47,10 @@ def get_suggestion():
     row = int(input("Il numero che vorresti conoscere in che riga si trova? "))
     column = int(input("Il numero che vorresti conoscere in che colonna si trova? "))
     if(sudoku_matrix[row-1][column-1] != 0):
-        print('Il numero richiesto è già pieno')
+        print(Fore.RED + 'Il numero richiesto è già pieno')
+        print(Style.RESET_ALL, end="")
     else:
         print(f'Nella casella {row, column} il numero da mettere è {solution_matrix[row-1][column-1]}')
-
-    return 0
 
 while True:
     try:
@@ -64,8 +63,8 @@ while True:
         case 2:
             while True:
                 try:
-                    column = int(input("Inserisci la colonna: "))
                     row = int(input("Inserisci la riga: "))
+                    column = int(input("Inserisci la colonna: "))
                     value = int(input("Inserisci il valore: "))
                 except ValueError:
                     raise ValueError("Valore non numerico")
@@ -83,6 +82,7 @@ while True:
         case 4:
             break
         case _:
-            print("Valore non valido")
+            print(Fore.RED + "Valore non valido")
+            print(Style.RESET_ALL, end="")
             print("Riprova \n")
             continue
