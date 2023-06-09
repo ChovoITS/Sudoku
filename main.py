@@ -13,7 +13,11 @@ def print_sudoku():
     for x in range(9):
         for y in range(9):
             print(sudoku_matrix[x][y], end=" ")
+            if y == 2 or y == 5:
+                print("|", end=" ")
         print()
+        if x == 2 or x == 5:
+            print("---------------------",end="\n")
     print("\n")
 
 def insert_number():
