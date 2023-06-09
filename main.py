@@ -1,3 +1,5 @@
+from colorama import Fore,Style
+
 sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
                  [6,0,0,1,9,5,0,0,0],
                  [0,9,8,0,0,0,0,6,0],
@@ -12,7 +14,11 @@ def print_sudoku():
     print("\n")
     for x in range(9):
         for y in range(9):
-            print(sudoku_matrix[x][y], end=" ")
+            if sudoku_matrix[x][y] != 0:
+                print(Fore.GREEN + str(sudoku_matrix[x][y]),end=" ")
+                print(Style.RESET_ALL,end="")
+            else:
+                print(sudoku_matrix[x][y], end=" ")
             if y == 2 or y == 5:
                 print("|", end=" ")
         print()
