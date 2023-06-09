@@ -20,7 +20,7 @@ solution_matrix = [[5,3,4,6,7,8,9,1,2],
                     [2,8,7,4,1,9,6,3,5],
                     [2,4,5,2,8,6,1,7,9]]
 
-def print_sudoku(row, column, sas):
+def print_sudoku():
     print("\n")
     for x in range(9):
         for y in range(9):
