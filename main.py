@@ -11,7 +11,7 @@ sudoku_matrix = [[5,3,0,0,7,0,0,0,0],
                  [0,0,0,4,1,9,0,0,5],
                  [0,0,0,0,8,0,0,7,9]]
 
-suggestion_n = 3
+suggestion_n = 1
 waiting_time = 5
 
 solution_matrix = [[5,3,4,6,7,8,9,1,2],
@@ -74,12 +74,12 @@ def insert_number(column:int, row:int, value:int):
 
 def get_suggestion():
 
-    if(suggestion_n==0):
+    if(suggestion_n<=0):
         print(f"Hai finito i suggerimenti disponibili, se te ne serve un altro dovrai aspettare {waiting_time} secondi. ")
         k = input("vuoi ancora il suggerimento o no? Y/N: ")
-        if(k==('N' or 'n')):
+        if k=='n' or k=='N' :
             print("Ottima scelta!")
-        else:
+        elif k=='y' or k=='Y':
             print("Ti consiglio un caffè nell'attesa! ")
             time.sleep(waiting_time)
             
@@ -90,8 +90,8 @@ def get_suggestion():
                     print(Fore.RED + 'Il numero richiesto è già pieno, riprova!')
                     print(Style.RESET_ALL, end="")
                     
-                    row = int(input("Il numero che vorresti conoscere in che riga si trova? "))
-                    column = int(input("Il numero che vorresti conoscere in che colonna si trova? "))
+                row = int(input("Il numero che vorresti conoscere in che riga si trova? "))
+                column = int(input("Il numero che vorresti conoscere in che colonna si trova? "))
             print(f'Nella casella {row, column} il numero da mettere è {solution_matrix[row-1][column-1]}')
     
     else:
@@ -102,8 +102,8 @@ def get_suggestion():
                 print(Fore.RED + 'Il numero richiesto è già pieno, riprova!')
                 print(Style.RESET_ALL, end="")
                 
-                row = int(input("Il numero che vorresti conoscere in che riga si trova? "))
-                column = int(input("Il numero che vorresti conoscere in che colonna si trova? "))
+            row = int(input("Il numero che vorresti conoscere in che riga si trova? "))
+            column = int(input("Il numero che vorresti conoscere in che colonna si trova? "))
         print(f'Nella casella {row, column} il numero da mettere è {solution_matrix[row-1][column-1]}')
     
     return suggestion_n-1
