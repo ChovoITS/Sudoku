@@ -111,7 +111,7 @@ def get_suggestion():
             
 while True:
     try:
-        answer = int(input("Menu \n \n1. Visualizza il sudoku \n2. Inserisci un numero \n3. Chiedi un suggerimento \n4. Exit \n"))
+        answer = int(input("Menu V1 \n \n1. Visualizza il sudoku \n2. Inserisci un numero \n3. Chiedi un suggerimento \n4. Exit \n"))
     except ValueError:
         raise ValueError("Valore non numerico")
     match answer:
